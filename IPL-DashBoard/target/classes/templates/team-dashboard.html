@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${team.teamName} + ' - IPL Dashboard'">Team Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <h1 th:text="${team.teamName}">Team Name</h1>
+    </header>
+
+    <div class="container">
+        <a th:href="@{/}" class="back-link">← Back to All Teams</a>
+        
+        <div class="dashboard-grid" th:if="${team != null}">
+            <!-- Left Column: Stats -->
+            <div class="glass-card team-stats">
+                <div class="stat-item">
+                    <div class="stat-value" th:text="${team.totalMatches}">0</div>
+                    <div class="stat-label">Total Matches</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" th:text="${team.totalWins}">0</div>
+                    <div class="stat-label">Total Wins</div>
+                </div>
+                
+                <div class="win-loss-chart">
+                    <div class="bar-container">
+                        <div class="bar wins" th:style="'height: ' + (${team.totalWins} * 100 / ${team.totalMatches}) + '%'"></div>
+                        <span style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--win-color);">Wins</span>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar losses" th:style="'height: ' + ((${team.totalMatches} - ${team.totalWins}) * 100 / ${team.totalMatches}) + '%'"></div>
+                        <span style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--loss-color);">Losses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Recent Matches -->
+            <div class="glass-card matches-list">
+                <h2 style="margin-top: 0;">Recent Matches</h2>
+                
+                <div th:each="match : ${team.matches}" class="glass-card match-card" style="margin-bottom: 1rem; padding: 1rem;">
+                    <div class="match-details">
+                        <h3>vs <span th:text="${match.team1 == team.teamName ? match.team2 : match.team1}">Opponent</span></h3>
+                        <p><strong th:text="${match.date}">Date</strong> at <span th:text="${match.venue}">Venue</span></p>
+                    </div>
+                    <div th:class="'match-result ' + (${match.matchWinner == team.teamName ? 'won' : 'lost'})">
+                        <div th:text="${match.matchWinner == team.teamName ? 'WON' : 'LOST'}">RESULT</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);" th:text="'by ' + ${match.resultMargin} + ' ' + ${match.result}">Margin</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div th:if="${team == null}" class="glass-card">
+            <h2>Team not found</h2>
+        </div>
+    </div>
+</body>
+</html>

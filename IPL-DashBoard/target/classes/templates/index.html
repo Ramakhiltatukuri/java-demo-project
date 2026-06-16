@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <h1>IPL Dashboard</h1>
+    </header>
+
+    <div class="container">
+        <div class="team-grid">
+            <a th:each="team : ${teams}" th:href="@{/dashboard/{teamName}(teamName=${team.teamName})}" class="glass-card team-card">
+                <h2 class="team-name" th:text="${team.teamName}">Team Name</h2>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

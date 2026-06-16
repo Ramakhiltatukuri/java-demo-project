@@ -1,0 +1,13 @@
+com/bk/ipldashboard/IplDashboardApplication.class
+com/bk/ipldashboard/model/Team.class
+com/bk/ipldashboard/repository/MatchRepository.class
+com/bk/ipldashboard/data/BatchConfig$1.class
+com/bk/ipldashboard/data/MatchInput.class
+com/bk/ipldashboard/model/MatchOutput$MatchOutputBuilder.class
+com/bk/ipldashboard/repository/TeamRepository.class
+com/bk/ipldashboard/data/JobCompletionNotificationListener.class
+com/bk/ipldashboard/data/BatchConfig.class
+com/bk/ipldashboard/controller/FrontendController.class
+com/bk/ipldashboard/model/MatchOutput.class
+com/bk/ipldashboard/controller/TeamController.class
+com/bk/ipldashboard/data/MatchInputProcessor.class
